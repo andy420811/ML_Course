@@ -72,7 +72,6 @@ def ml_loop():
                         position[1] = position[1] + vector[1]
 
                     #需要用固定變數將結果存出
-                    print(position,scene_info.frame)
                     #print(position,vector,scene_info.ball,scene_info.platform)
                     if position[0] < 0 :
                         position[0] = -position[0]
@@ -81,7 +80,6 @@ def ml_loop():
                     if last[0] != position[0] :
                         last[0] = position[0]
                         last[1] = position[1]
-                    print(position,vector,scene_info.ball,scene_info.platform,last)
                     if last[0] > scene_info.platform[0]+20:
                         comm.send_instruction(scene_info.frame, PlatformAction.MOVE_RIGHT)
                     if last[0] < scene_info.platform[0]+20:
