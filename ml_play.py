@@ -53,7 +53,7 @@ def ml_loop():
             ball_served = True
             for i in range(0):
                 comm.send_instruction(scene_info.frame, PlatformAction.MOVE_LEFT)
-            #comm.send_instruction(scene_info.frame, PlatformAction.SERVE_TO_RIGHT)
+            comm.send_instruction(scene_info.frame, PlatformAction.SERVE_TO_RIGHT)
         else:
             now=[scene_info.ball[0],scene_info.ball[1]]
             for i in range(2):
