@@ -6,6 +6,12 @@ The template of the script for the machine learning process in game pingpong
 from mlgame.communication import ml as comm
 import numpy as np
 import pickle
+from os import path
+from matplotlib import pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+from mpl_toolkits.mplot3d import Axes3D
 
 def ml_loop(side: str):
     """
@@ -24,6 +30,37 @@ def ml_loop(side: str):
     # === Here is the execution order of the loop === #
     # 1. Put the initialization code here
     ball_served = False
+    
+    def transformCommand(command):
+        if 'RIGHT' in str(command):
+            return 2
+        elif 'LEFT' in str(command):
+            return 1
+        else:
+            return 0
+        pass
+
+
+    def get_ArkanoidData(filename):
+        Frames = []
+        Balls = []
+        Commands = []
+        PlatformPos = []
+        log = pickle.load((open(filename, 'rb')))
+        for sceneInfo in log:
+            Frames.append(sceneInfo.frame)
+            Balls.append([sceneInfo.ball[0], sceneInfo.ball[1]])
+            PlatformPos.append(sceneInfo.platform)
+            Commands.append(transformCommand(sceneInfo.command))
+
+        commands_ary = np.array([Commands])
+        commands_ary = commands_ary.reshape((len(Commands), 1))
+        frame_ary = np.array(Frames)
+        frame_ary = frame_ary.reshape((len(Frames), 1))
+        data = np.hstack((frame_ary, Balls, PlatformPos, commands_ary))
+        return data
+
+    
     def move_to(player, pred) : #move platform to predicted position to catch ball 
         if player == '1P':
             if scene_info["platform_1P"][0]+20  > (pred-10) and scene_info["platform_1P"][0]+20 < (pred+10): return 0 # NONE
@@ -159,7 +196,6 @@ def ml_loop(side: str):
                     
             else:
                 return move_to(player = '2P',pred = pred)
-    s = [93, 93]
     # 2. Inform the game process that ml process is ready
     comm.ml_ready()
 
@@ -168,8 +204,13 @@ def ml_loop(side: str):
         # 3.1. Receive the scene information sent from the game process
         scene_info = comm.recv_from_game()
         feature = []
-       # feature.append(scene_info["blocker"])
-       # feature.append(scene_info["ball"])
+        feature.append(scene_info["blocker"][0])
+        feature.append(scene_info["ball"][0])
+        feature.append(scene_info["ball"][1])
+        feature.append(scene_info["ball_speed"][0])
+        feature.append(scene_info["ball_speed"][1])
+        print(feature)
+        
         
 
         # 3.2. If either of two sides wins the game, do the updating or
