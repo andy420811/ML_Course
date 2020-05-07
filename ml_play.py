@@ -11,7 +11,6 @@ from matplotlib import pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
-from mpl_toolkits.mplot3d import Axes3D
 
 def ml_loop(side: str):
     """
