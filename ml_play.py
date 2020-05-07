@@ -168,8 +168,8 @@ def ml_loop(side: str):
         # 3.1. Receive the scene information sent from the game process
         scene_info = comm.recv_from_game()
         feature = []
-        feature.append(scene_info["blocker"])
-        feature.append(scene_info["ball"])
+       # feature.append(scene_info["blocker"])
+       # feature.append(scene_info["ball"])
         
 
         # 3.2. If either of two sides wins the game, do the updating or
