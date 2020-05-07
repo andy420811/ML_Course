@@ -63,7 +63,7 @@ def ml_loop(side: str):
             x= ( scene_info["ball"][1]-scene_info["blocker"][1] + 180) // scene_info["ball_speed"][1] # 幾個frame以後會遇到block  # x means how many frames before catch the ball
             pred_nc = scene_info["ball"][0] + x * scene_info["ball_speed"][0]
             bound = pred_nc // 200
-            block_pos = scene_info["blocker"][0]
+            block_pos = scene_info["blocker"][0]    
             bound_b = block_pos // 200
             print("xx")
             if bound > 0:
@@ -169,7 +169,7 @@ def ml_loop(side: str):
         scene_info = comm.recv_from_game()
         feature = []
         feature.append(scene_info["blocker"])
-        feature.append()
+        feature.append(scene_info["ball"])
         
 
         # 3.2. If either of two sides wins the game, do the updating or
