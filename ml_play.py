@@ -96,7 +96,7 @@ def ml_loop(side: str):
             return 1
         else:
             return 2
-    filename = path.join(path.dirname(__file__), 'save/Kmeas_pred.pickle')
+    filename = path.join(path.dirname(__file__), 'Kmeas_pred.pickle')
     with open(filename,'rb') as f:
         clf = pickle.load(f)
 
