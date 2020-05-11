@@ -7,7 +7,6 @@ from mlgame.communication import ml as comm
 import pickle
 import numpy as np
 from os import path
-from matplotlib import pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
