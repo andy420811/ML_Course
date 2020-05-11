@@ -7,7 +7,6 @@ from mlgame.communication import ml as comm
 import pickle
 import numpy as np
 from os import path
-from matplotlib import pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
@@ -97,7 +96,7 @@ def ml_loop(side: str):
             return 1
         else:
             return 2
-    filename = path.join(path.dirname(__file__), 'save/clf_neural_movedir_1P.pickle')
+    filename = path.join(path.dirname(__file__), 'save/Kmeas_pred.pickle')
     with open(filename,'rb') as f:
         clf = pickle.load(f)
 
