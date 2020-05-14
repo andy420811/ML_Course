@@ -182,13 +182,13 @@ def ml_loop(side: str):
                     pred = pred + (abs(bound)*200)
             if x<=2 and move_to( '2P' , pred) == 0:
                 if scene_info['platform_2P'][0] < 50 and scene_info['blocker'][0] > 150 :
-                    return cut_ball(1)
+                    return cut_ball(0)
                 elif scene_info['platform_2P'][0] < 100 and scene_info['blocker'][0] > 100 :
-                    return cut_ball(1)
+                    return cut_ball(0)
                 elif scene_info['platform_2P'][0] < 150 and scene_info['blocker'][0] > 75 :
-                    return cut_ball(1)
+                    return cut_ball(0)
                 elif scene_info['platform_2P'][0] < 180 and scene_info['blocker'][0] > 80 :
-                    return cut_ball(1)
+                    return cut_ball(0)
                 else:
                     return cut_ball(0)
                     
