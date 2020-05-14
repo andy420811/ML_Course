@@ -151,11 +151,11 @@ def ml_loop(side: str):
                     pred = abs(pred - (bound+1) *200)
                 else :
                     pred = pred + (abs(bound)*200)
-            if x<=1 and move_to( '1P' , pred) == 0:
+            if x<=2 and move_to( '1P' , pred) == 0:
                if (scene_info["blocker"][0] > 135 or scene_info["blocker"][0] < 35) and scene_info["frame"] < 1000:
                    return cut_ball(0)
                elif scene_info["frame"] > 1000:
-                   return cut_ball(1)
+                   return cut_ball(0)
             return move_to(player = '1P', pred = pred)
         else : # 球正在向上 # ball goes up
   #          pred = 
